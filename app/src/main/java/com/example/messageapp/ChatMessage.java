@@ -6,20 +6,24 @@ import androidx.room.PrimaryKey;
 
 @Entity
 public class ChatMessage {
-    @ColumnInfo(name = "message")
-    protected String message;
-    @ColumnInfo(name = "TimeSent")
-    protected String timeSent;
-    @ColumnInfo(name = "SendOrReceive")
-    protected int SendOrReceive;
-    @PrimaryKey (autoGenerate = true)
-    @ColumnInfo(name = "id")
+    @PrimaryKey(autoGenerate = true)
+    @ColumnInfo(name="id")
     public int id;
-    public ChatMessage(String m, String t, int sent)
+    @ColumnInfo(name="message")
+    private String message;
+    @ColumnInfo(name="timeSent")
+    private String timeSent;
+    @ColumnInfo(name="isSentButton")
+    private boolean isSentButton;
+
+    public ChatMessage() {
+    }
+
+    public ChatMessage(String m, String t, boolean sent)
     {
         message = m;
         timeSent = t;
-        SendOrReceive = sent;
+        isSentButton = sent;
     }
 
     public String getMessage() {
@@ -30,15 +34,16 @@ public class ChatMessage {
         return timeSent;
     }
 
-    public int getSendOrReceive() {return SendOrReceive;
+    public boolean isSentButton() {
+        return isSentButton;
     }
 
     public void setTimeSent(String timeSent) {
         this.timeSent = timeSent;
     }
 
-    public void setSendOrReceive(int sentButton) {
-        SendOrReceive = sentButton ;
+    public void setSentButton(boolean sentButton) {
+        isSentButton = sentButton;
     }
 
     public void setMessage(String message) {
